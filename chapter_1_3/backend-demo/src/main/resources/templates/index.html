@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="#{page.title}"></title>
+    <link rel="stylesheet" href="/styles.css">
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var xhr = new XMLHttpRequest();
+        xhr.responseType = 'json';
+        xhr.onreadystatechange = function () {
+            if (xhr.readyState == XMLHttpRequest.DONE) {
+                document.getElementsByTagName('p')[0].innerText = xhr.response['content'];
+            };
+        }
+        xhr.open('GET', '/greeting', true);
+        xhr.send();
+    });
+    </script>
+</head>
+<body>
+<!-- Header with Image -->
+    <header>
+        <img class="'logo'" src="/logo.png" alt="Logo Image">
+        
+    </header>
+
+    <!-- Main Content -->
+    <section>
+        <h1>Hi</h1>
+        <p>empty</p>
+        <h2 th:text="#{page.subtitle}">Learn Spring Boot like in real-live projects.</h2>
+
+        <div th:if="${showDetails}">
+            <div th:replace="~{fragments/details.html :: content(lang='en')}"/>
+        </div>
+
+        <a href="https://github.com" target="_blank">More details</a>
+
+        <img class="'cover'" src="/image.jpg" alt="Academy">
+    </section>
+
+    <!-- Footer with Light Text -->
+    <footer>
+        <p class="light-text" th:text="'qingyunyouxiao'">qingyunyouxiao</p>
+    </footer>
+</body>
+</html>
