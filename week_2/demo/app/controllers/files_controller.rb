@@ -9,5 +9,7 @@ class FilesController < ApplicationController
     all_items = Dir.glob(Rails.root.join("*"))
     @files = all_items.map { |item| File.basename(item) }
     Rails.logger.info "file_list #{@files.inspect}"
+
+    render :file_list
   end
 end
